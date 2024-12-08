@@ -8,7 +8,7 @@ export default function thulePriceCalculation(show: Show, supabaseData: any):str
     const dateTime = new Date(show.dttmShowStart);
     let age = ageCalculation(supabaseData[0].user_data.birth_date)
     let armyOrUniOrTeach = false;
-    supabaseData.forEach(element => {
+    supabaseData.forEach((element: { membership_id: number; }) => {
         if(element.membership_id == 1 || element.membership_id == 2 || element.membership_id == 3){
             armyOrUniOrTeach = true
         }
@@ -47,7 +47,7 @@ export default function thulePriceCalculation(show: Show, supabaseData: any):str
         }
     }
 
-    supabaseData.forEach(element => {
+    supabaseData.forEach((element: { membership_id: number; }) => {
         if(element.membership_id == 10){
             price -= 0.50
         }

@@ -11,7 +11,7 @@ export default function artisPriceCalculation(show: Show, supabaseData: any):str
     let age = ageCalculation(supabaseData[0].user_data.birth_date)
     let armyOrUniOrTeach = false;
     let member = 0;
-    supabaseData.forEach(element => {
+    supabaseData.forEach((element: { membership_id: number; }) => {
         if(element.membership_id == 5){
             member = 1
         }

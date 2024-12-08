@@ -8,7 +8,7 @@ export default function viimsiPriceCalculation(show: Show, supabaseData: any):st
     let age = ageCalculation(supabaseData[0].user_data.birth_date)
     let member = 0;
     if (age > 18){
-        supabaseData.forEach(element => {
+        supabaseData.forEach((element: { membership_id: number; }) => {
             if(element.membership_id == 8){
                 member = 1
             }
