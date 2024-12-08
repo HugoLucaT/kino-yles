@@ -11,7 +11,7 @@ import Tartu from "@/components/api-req/cities/tartu";
 import Viljandi from "@/components/api-req/cities/viljandi";
 import { Link } from "lucide-react";
 
-export default async function Index({ params }: { params: { city: string } }) {
+export default async function Index({ params }: { params: Promise<{city: string }> }) {
   const { city } = await params;
   if (city == "tallinn") {
     return (
