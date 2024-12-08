@@ -37,7 +37,7 @@ export default function RootLayout({
               <nav className="w-full flex justify-center border-b border-b-foreground/10 h-16 ">
                 <div className="w-full flex justify-between items-center p-3 px-5 text-sm ">
                   <div className="flex gap-5 items-center font-semibold ">
-                    <Link href={"/"}>Kinorakendus</Link>
+                    <Link href={"/home"}>Kinorakendus</Link>
                   </div>
                   <div className="flex flex-1 justify-center ">
                     <div className="w-full max-w-lg">
