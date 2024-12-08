@@ -24,6 +24,7 @@ import { useEffect, useState } from "react";
 import { Button } from "../ui/button";
 import { formatDateTime } from "@/utils/utils";
 import { format } from "path";
+import { ApolloJSON } from "@/lib/movie-data/cinemas/apollo-types";
 
 interface Data {
   dttmShowStart: string; // Date;
@@ -33,6 +34,10 @@ interface Data {
   Theatre: string;
   TheatreAuditorium: string;
   Price: string;
+}
+
+function isCity(city: any): city is 'narva' | 'tartu' | 'johvi' | 'parnu' | 'viljandi' {
+  return ['narva', 'tartu', 'johvi', 'parnu', 'viljandi'].includes(city);
 }
 
 export default function OthersMovie(info: any) {
@@ -114,24 +119,27 @@ export default function OthersMovie(info: any) {
     `
         )
         .eq("user_id", userId);
-      if (!supabaseData) {
-        supabaseData = [
-          {
-            id: 5000,
-            membership: {
-              id: 500000,
-              title: "Klubi",
-              cinema_id: 2,
-              discount_type: "percentage",
+        if (!supabaseData) {
+          supabaseData = [
+            {
+              id: 5000,
+              user_id: userId,
+              membership: [
+                {
+                id: 500000,
+                title: "Klubi",
+                cinema_id: 2,
+                discount_type: "percentage",}
+              ],
+              membership_id: 500000,
+              user_data: [
+                {
+                auth_uuid: "0",
+                birth_date: "2000-01-01",
+              } ],
             },
-            membership_id: 500000,
-            user_data: {
-              auth_uuid: "0",
-              birth_date: "2000-01-01",
-            },
-          },
-        ];
-      }
+          ];
+        }
       if (info.city === "tallinn") {
         const [dataApollo, dataArtis, dataViimsi] =
           await Promise.all(getTallinnSchedule());
@@ -176,15 +184,16 @@ export default function OthersMovie(info: any) {
         });
       }
 
-      const cityScheduleFetchers = {
+      const cityScheduleFetchers: Record<string, () => Promise<ApolloJSON>> = {
         narva: getNarvaSchedule,
         tartu: getTartuSchedule,
         johvi: getJohviSchedule,
         parnu: getParnuSchedule,
         viljandi: getViljandiSchedule,
       };
+      
 
-      if (cityScheduleFetchers[info.city]) {
+      if (isCity(info.city) && cityScheduleFetchers[info.city]) {
         const citySchedule = await cityScheduleFetchers[info.city]();
         citySchedule.Shows.forEach((element) => {
           if (removeSpecialCharacters(element.OriginalTitle) === decodedMovie) {

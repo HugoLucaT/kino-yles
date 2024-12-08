@@ -16,7 +16,7 @@ export default function apolloPriceCalculation(show: Show, supabaseData: any):st
     console.log(supabaseData)
     let age = ageCalculation(supabaseData[0].user_data.birth_date)
     const dateTime = new Date(show.dttmShowStart);
-    supabaseData.forEach(element => {
+    supabaseData.forEach((element: { membership_id: number; }) => {
         if(element.membership_id == 1){
             age = 15
         }
@@ -43,7 +43,7 @@ export default function apolloPriceCalculation(show: Show, supabaseData: any):st
     }
 
     if(age > 12 && (!(dateTime.getDay() <= 5 && dateTime.getHours() < 17) || age < 65 || dateTime.getDay() == 0)){
-        supabaseData.forEach(element => {
+        supabaseData.forEach((element: { membership_id: number; }) => {
             if(element.membership_id == 4){
                 price = price * 0.9
             }
