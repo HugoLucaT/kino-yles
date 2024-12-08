@@ -1,12 +1,19 @@
+"use client";
+import {useParams} from 'next/navigation';
 import Movie from "@/components/movie/movies";
 import SearchResult from "@/components/search/searchresult";
 
-export default async function Index({
-  params,
-}: {
-  params: { city: string; movie: string };
-}) {
-  const { city, movie } = await params;
+interface PageProps {
+  params: Promise<Params>;
+}
+
+interface Params {
+  city: string;
+  movie: string;
+}
+
+export default function Index() {
+  const { city, movie } = useParams();
 
   if (city === "search") {
     return (
