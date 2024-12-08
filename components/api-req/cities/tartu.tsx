@@ -1,41 +1,16 @@
 import { getTartuSchedule } from "@/lib/movie-data/cities/tartu";
 import { removeSpecialCharacters } from "@/lib/utils";
 import Link from "next/link";
+import CityFormat from "./CityFormat";
 
 export default async function Tartu() {
   try {
     const data = await getTartuSchedule();
 
     return (
-      <div>
-        <h1>Schedule</h1>
+      <div className="grid gap-4 grid-cols-8 p-4">
         {data.Shows.map((show, index) => (
-          <div key={index}>
-            <Link
-              href={`/tartu/${removeSpecialCharacters(show.OriginalTitle)}`}
-            >
-              {show.Title}
-            </Link>
-            <p>
-              <strong>Original Title:</strong> {show.OriginalTitle}
-            </p>
-            <p>
-              <strong>Show Time:</strong> {show.dttmShowStart}
-            </p>
-            <p>
-              <strong>Location:</strong> {show.TheatreAndAuditorium}
-            </p>
-            <p>
-              <strong>Genres:</strong> {show.Genres}
-            </p>
-            {show.Images.EventMediumImagePortrait && (
-              <img
-                src={show.Images.EventMediumImagePortrait}
-                alt={show.Title}
-                width="100"
-              />
-            )}
-          </div>
+          <CityFormat show={show} index={index} />
         ))}
       </div>
     );
