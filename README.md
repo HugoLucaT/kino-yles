@@ -70,7 +70,7 @@ We noticed that there doesn't seem to be a place to check the current and future
 - **Next.js** - For the frontend framework and server-side rendering.
 - **React** - For building user interfaces.
 - **Supabase** - For user authentication.
-- **[API Name Placeholder]** - To fetch the movie data.
+- **Apollo, Thule, Artis, Viimsi cinema Open APIs** - To fetch the movie data.
 
 ## Lo-Fi Wireframe
 ![Wireframe](./Wireframe.png)
