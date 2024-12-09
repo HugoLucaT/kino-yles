@@ -11,37 +11,30 @@ We noticed that there doesn't seem to be a place to check the current and future
 ## Project status
 
 ### Planning Phase
-  - [ ] Define project requirements and set up project infrastructure
-  - [ ] Design the project's architecture and database schema
+  - [x] Define project requirements and set up project infrastructure
+  - [x] Design the project's architecture and database schema
   
 ### Setup Development Environment
-  - [ ] Install necessary dependencies
-  - [ ] Setup local Supabase
-  - [ ] Configure version control
-  - [ ] Configure code formatting
+  - [x] Install necessary dependencies
+  - [x] Setup local Supabase
 
 ### Development Phase
 - **Backend Development**
-    - [ ] Implement authentication endpoints
-    - [ ] Implement movie data endpoints
-    - [ ] Integrate with the external movie data API
+    - [x] Implement user sign up and log in
+    - [x] Implement fetching data from different cinemas
+    - [x] Implemetn search
   
 - **Frontend Development**
-  - [ ] Authentication UI
-  - [ ] Browsing UI
-  - [ ] Search functionality
-  - [ ] Movie details UI
-    - [ ] Ratings
-  - [ ] Profile view UI
-    - [ ] Watchlists
-    - [ ] Favourites
-  
-- **Integration**
-  - [ ] Integrate backend services with the frontend
+  - [x] Authentication UI
+  - [x] Browsing UI
+  - [x] Search functionality
+  - [x] Movie details UI
+  - [x] Animations to different UI elements
+ 
 
 ### Finalizing Phase
   - [ ] Test the project
-  - [ ] Deploy the project to a production environment
+  - [x] Deploy the project to a production environment
   - [ ] Post-deployment testing
 
 ## Milestones
@@ -98,25 +91,27 @@ _Will be added soon._
 
   - Users can see a list of upcoming movies at the cinemas.
   - Each movie has some basic information about it (e.g title, poster and release date).
-  - The information will come from [API Name Placeholder] API.
+  - The information will come from all of the different cinema APIs.
 
 - **Search**
 
-  - Users can search for movies by:
-    - Name
-    - Genre
-    - Ratings
-    - Cast
-  - Users can filter search results to refine the search.
+  - Users can search for movies by it's title
 
 - **Movie Details**
 
-  - Upon clicking on a movie, there will be more detailed information.
+  - Upon clicking or hovering on a movie, there will be more detailed information.
   - The extra details include:
     - Short summary of the story
-    - The cast
-    - User ratings
+    - Title
+    - Rating (PG, R etc)
 
+- **Country wide cinemas**
+  - The website will show information about all of the cinemas in Estonia.
+
+- **Settings**
+  - The user can choose between light and dark modes.
+
+## Future functionalities (nice to haves)
 - **Favorite Movies**
 
   - Users can add movies to their favorites.
@@ -154,11 +149,6 @@ _Will be added soon._
   - The scores will be separated by the organization.
   - Users can select their preferred movie critics.
 
-- **Country wide cinemas**
-  - The website will show information about all of the cinemas in Estonia.
-
-- **Settings**
-  - The user can choose between light and dark modes.
 
 ### Authors:
 
