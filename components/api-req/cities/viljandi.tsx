@@ -1,7 +1,7 @@
 import { getViljandiSchedule } from "@/lib/movie-data/cities/viljandi";
 import { removeSpecialCharacters } from "@/lib/utils";
 import Link from "next/link";
-import CityFormat from "./CityFormat";
+import CityFormat from "./viljandiFormat";
 
 export default async function Viljandi() {
   try {

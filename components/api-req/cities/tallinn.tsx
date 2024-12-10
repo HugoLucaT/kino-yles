@@ -1,7 +1,7 @@
 import { getTallinnSchedule } from "@/lib/movie-data/cities/tallinn";
 import { removeSpecialCharacters } from "@/lib/utils";
 import Link from "next/link";
-import CityFormat from "./CityFormat";
+import CityFormat from "./tallinnFormat";
 
 export default async function Tallinn() {
   try {

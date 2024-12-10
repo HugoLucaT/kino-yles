@@ -1,7 +1,7 @@
 import { getJohviSchedule } from "@/lib/movie-data/cities/johvi";
 import { removeSpecialCharacters } from "@/lib/utils";
 import Link from "next/link";
-import CityFormat from "./CityFormat";
+import CityFormat from "./johviFormat";
 
 export default async function Johvi() {
   try {

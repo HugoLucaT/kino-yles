@@ -1,7 +1,7 @@
 import { getNarvaSchedule } from "@/lib/movie-data/cities/narva";
 import { removeSpecialCharacters } from "@/lib/utils";
 import Link from "next/link";
-import CityFormat from "./CityFormat";
+import CityFormat from "./narvaFormat";
 
 export default async function Narva() {
   try {

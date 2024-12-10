@@ -1,7 +1,7 @@
 import { getParnuSchedule } from "@/lib/movie-data/cities/parnu";
 import { removeSpecialCharacters } from "@/lib/utils";
 import Link from "next/link";
-import CityFormat from "./CityFormat";
+import CityFormat from "./parnuFormat";
 
 export default async function Parnu() {
   try {
