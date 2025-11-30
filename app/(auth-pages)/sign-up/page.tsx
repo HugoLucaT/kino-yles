@@ -3,9 +3,11 @@ import SignUpForm from "@/components/signup/SignUpForm";
 import { createClient } from "@/utils/supabase/server";
 
 export default async function Signup(props: {
-  searchParams: Promise<Message>;
+  searchParams: Message;   // ❗️ FIX: remove Promise<>
 }) {
-  const searchParams = await props.searchParams;
+  const searchParams = props.searchParams;
+
+  // If form returned a message
   if ("message" in searchParams) {
     return (
       <div className="w-full flex-1 flex items-center h-screen sm:max-w-md justify-center gap-2 p-4">
@@ -14,17 +16,22 @@ export default async function Signup(props: {
     );
   }
 
+  // Data fetching
   let res;
-  // Get the cinemas and memberships at the top of the component tree.
   try {
     const supabase = await createClient();
+
     const { data: memberships, error: membershipFetchError } = await supabase
       .from("membership")
       .select("id, cinema_id, title");
 
     if (membershipFetchError) {
       console.error("Error fetching memberships:", membershipFetchError);
-      return [{ id: 10000000000, name: "Unexpected Errorino" }];
+      return (
+        <div className="p-4">
+          <FormMessage message={{ message: "Error fetching memberships." }} />
+        </div>
+      );
     }
 
     const { data: cinemasFromDb, error: cinemaFetchError } = await supabase
@@ -32,11 +39,15 @@ export default async function Signup(props: {
       .select("*");
 
     if (cinemaFetchError) {
-      console.error("Error fetching memberships:", cinemaFetchError);
-      return [{ id: 10000000000, name: "Unexpected Errorino" }];
+      console.error("Error fetching cinemas:", cinemaFetchError);
+      return (
+        <div className="p-4">
+          <FormMessage message={{ message: "Error fetching cinemas." }} />
+        </div>
+      );
     }
 
-    // Add the isChecked property to each cinema, for easier handling
+    // Create processed data
     const cinemas = cinemasFromDb.map((cinema) => ({
       ...cinema,
       isChecked: false,
@@ -45,7 +56,11 @@ export default async function Signup(props: {
     res = { cinemas, memberships };
   } catch (error) {
     console.error("Unexpected error:", error);
-    return [];
+    return (
+      <div className="p-4">
+        <FormMessage message={{ message: "Unexpected server error." }} />
+      </div>
+    );
   }
 
   return (
