@@ -23,11 +23,10 @@ const urlThuleEvents = "https://pilet.thulekoda.ee/xml/Events?includePictures=tr
 export function getEstoniaSchedule(): [
     Promise<ApolloJSON>,
     Promise<ArtisJSON>,
-    Promise<ViimsiXML>,
-    Promise<ThuleXML>
+    Promise<ViimsiXML>
   ] {
     const apolloData: Promise<ApolloJSON> = getApolloSchedule()
-  return [apolloData, JSONFromURL<ArtisJSON>(urlArtis), XML2JSONFromURL<ViimsiXML>(urlViimsi), XML2JSONFromURL<ThuleXML>(urlThule)]
+  return [apolloData, JSONFromURL<ArtisJSON>(urlArtis), XML2JSONFromURL<ViimsiXML>(urlViimsi)]
 }
 
 export function getEstoniaEvents(): [

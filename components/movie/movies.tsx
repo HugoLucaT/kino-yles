@@ -2,7 +2,7 @@
 
 import { getApolloEvents } from "@/lib/event-data/cinemas/apollo-events";
 import { getArtisEvents } from "@/lib/event-data/cinemas/artis-events";
-import { getThuleEvents } from "@/lib/event-data/cinemas/thule-events";
+//import { getThuleEvents } from "@/lib/event-data/cinemas/thule-events";
 import { getViimsiEvents } from "@/lib/event-data/cinemas/viimsi-events";
 import { getJohviSchedule } from "@/lib/movie-data/cities/johvi";
 import { getNarvaSchedule } from "@/lib/movie-data/cities/narva";
@@ -14,7 +14,7 @@ import { getViljandiSchedule } from "@/lib/movie-data/cities/viljandi";
 import { getEstoniaSchedule } from "@/lib/movie-data/eesti";
 import apolloPriceCalculation from "@/lib/price/apollo-price";
 import artisPriceCalculation from "@/lib/price/artis-price";
-import thulePriceCalculation from "@/lib/price/thule-price";
+//import thulePriceCalculation from "@/lib/price/thule-price";
 import viimsiPriceCalculation from "@/lib/price/viimsi-price";
 import { removeSpecialCharacters } from "@/lib/utils";
 import { createClient } from "@/utils/supabase/client";
@@ -65,13 +65,6 @@ export default function OthersMovie(info: any) {
         }
         if (!filteredEvents[0]) {
           eventData = (await getViimsiEvents()).Events.Event;
-          filteredEvents = eventData.filter(
-            (event) =>
-              removeSpecialCharacters(event.OriginalTitle) === decodedMovie
-          );
-        }
-        if (!filteredEvents[0]) {
-          eventData = (await getThuleEvents()).Events.Event;
           filteredEvents = eventData.filter(
             (event) =>
               removeSpecialCharacters(event.OriginalTitle) === decodedMovie
@@ -210,7 +203,7 @@ export default function OthersMovie(info: any) {
         });
       }
 
-      if (info.city === "saaremaa") {
+      /*if (info.city === "saaremaa") {
         const [dataThule, dataApollo] = await Promise.all(
           getSaaremaaSchedule()
         );
@@ -240,10 +233,10 @@ export default function OthersMovie(info: any) {
             });
           }
         });
-      }
+      }*/
 
       if (!info.city || info.city === "eesti") {
-        const [apolloData, artisData, viimsiData, thuleData] =
+        const [apolloData, artisData, viimsiData] =
           await Promise.all(getEstoniaSchedule());
         apolloData.Shows.forEach((element) => {
           if (removeSpecialCharacters(element.OriginalTitle) === decodedMovie) {
@@ -284,7 +277,7 @@ export default function OthersMovie(info: any) {
             });
           }
         });
-        thuleData.Schedule.Shows.Show.forEach((element) => {
+        /*thuleData.Schedule.Shows.Show.forEach((element) => {
           if (removeSpecialCharacters(element.OriginalTitle) === decodedMovie) {
             fetchedData.push({
               dttmShowStart: element.dttmShowStart,
@@ -296,7 +289,7 @@ export default function OthersMovie(info: any) {
               Price: thulePriceCalculation(element, supabaseData),
             });
           }
-        });
+        });*/
       }
 
       const filteredShows = fetchedData.filter(

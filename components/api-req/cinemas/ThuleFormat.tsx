@@ -1,7 +1,7 @@
 import MainPageMovie from "@/components/movie/MainpageMovie";
 import { getThuleEvents } from "@/lib/event-data/cinemas/thule-events";
 
-export async function ThuleFormat() {
+/*export async function ThuleFormat() {
   const thuleMovies = await getThuleEvents();
 
   return (
@@ -15,4 +15,4 @@ export async function ThuleFormat() {
       </div>
     </>
   );
-}
+}*/

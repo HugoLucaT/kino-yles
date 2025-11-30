@@ -1,7 +1,7 @@
 
 import { ApolloFormat } from "@/components/api-req/cinemas/ApolloFormat";
 import { ArtisFormat } from "@/components/api-req/cinemas/ArtisFormat";
-import { ThuleFormat } from "@/components/api-req/cinemas/ThuleFormat";
+//import { ThuleFormat } from "@/components/api-req/cinemas/ThuleFormat";
 import { ViimsiFormat } from "@/components/api-req/cinemas/ViimsiFormat";
 
 export default async function Index() {
@@ -11,9 +11,6 @@ export default async function Index() {
         <ApolloFormat />
       </div>
       <br />
-      <div className="thule-movies">
-        <ThuleFormat />
-      </div>
       <br />
       <div className="artis-movies">
         <ArtisFormat />
